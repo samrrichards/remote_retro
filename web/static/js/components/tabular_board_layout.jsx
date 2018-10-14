@@ -28,7 +28,9 @@ const TabularBoardLayout = props => {
         })}
       </div>
 
-      <IdeaList category="happy" votes={[]} {...props} />
+      <div className={styles.ideaListWrapper}>
+        <IdeaList category="happy" votes={[]} {...props} />
+      </div>
     </React.Fragment>
   )
 }
