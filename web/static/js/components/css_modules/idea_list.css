@@ -16,6 +16,8 @@
   */
   height: 1px;
 
+  flex: 1;
+
   overflow-y: hidden;
   &:global(.overflowed) {
     overflow-y: scroll;
