@@ -7,6 +7,7 @@ import CategoryColumn from "./category_column"
 
 import * as AppPropTypes from "../prop_types"
 import styles from "./css_modules/idea_board.css"
+import ColumnarBoardLayout from "./columnar_board_layout"
 import STAGES from "../configs/stages"
 
 const { ACTION_ITEMS, CLOSED } = STAGES
@@ -16,10 +17,6 @@ const IdeaBoard = props => {
   const showActionItem = includes([ACTION_ITEMS, CLOSED], stage)
   const renderableColumnCategories = [...categories]
   if (showActionItem) { renderableColumnCategories.push("action-item") }
-
-  const categoryColumns = renderableColumnCategories.map(category => (
-    <CategoryColumn {...props} category={category} key={category} />
-  ))
 
   return ([
     <MediaQuery maxWidth={767}>
@@ -40,9 +37,7 @@ const IdeaBoard = props => {
     </MediaQuery>,
 
     <MediaQuery minWidth={768}>
-      <div className={`ui equal width padded grid ${styles.categoryColumnsWrapper}`}>
-        { categoryColumns }
-      </div>
+      <ColumnarBoardLayout {...props} categories={renderableColumnCategories} />
     </MediaQuery>,
   ])
 }
