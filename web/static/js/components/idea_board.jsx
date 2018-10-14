@@ -1,4 +1,5 @@
 import React from "react"
+import MediaQuery from "react-responsive"
 import includes from "lodash/includes"
 
 import CategoryColumn from "./category_column"
@@ -19,11 +20,29 @@ const IdeaBoard = props => {
     <CategoryColumn {...props} category={category} key={category} />
   ))
 
-  return (
-    <div className={`ui equal width padded grid ${styles.categoryColumnsWrapper}`}>
-      { categoryColumns }
-    </div>
-  )
+  return ([
+    <MediaQuery maxWidth={767}>
+      <div className={`ui three item tabular menu`}>
+        <div className="active item">
+          <img src="/images/happy.svg" height={40} width={40} />
+        </div>
+        <div className="item">
+          <img src="/images/sad.svg" height={40} width={40} />
+        </div>
+        <div className="item">
+          <img src="/images/confused.svg" height={40} width={40} />
+        </div>
+      </div>
+      <div className={`ui bottom attached active tab segment ${styles.categoryColumnsWrapper}`}>
+        <p>derp</p>
+      </div>
+    </MediaQuery>,
+    <MediaQuery minWidth={768}>
+      <div className={`ui equal width padded grid ${styles.categoryColumnsWrapper}`}>
+        { categoryColumns }
+      </div>
+    </MediaQuery>,
+  ])
 }
 
 IdeaBoard.propTypes = {
