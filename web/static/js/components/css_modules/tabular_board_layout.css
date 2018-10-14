@@ -1,4 +1,6 @@
 .tab {
+  justify-content: center;
+
   flex-grow: 1 !important;
   flex-basis: 0 !important;
 }

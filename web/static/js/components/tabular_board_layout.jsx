@@ -1,4 +1,5 @@
 import React from "react"
+import classNames from "classnames"
 
 import IdeaList from "./idea_list"
 
@@ -8,16 +9,18 @@ import styles from "./css_modules/tabular_board_layout.css"
 const TabularBoardLayout = props => {
   return (
     <React.Fragment>
-      <div className={`ui tabular menu`}>
-        <div className={`active item ${styles.tab}`}>
-          <img src="/images/happy.svg" height={40} width={40} />
-        </div>
-        <div className={`item ${styles.tab}`}>
-          <img src="/images/sad.svg" height={40} width={40} />
-        </div>
-        <div className={`item ${styles.tab}`}>
-          <img src="/images/confused.svg" height={40} width={40} />
-        </div>
+      <div className="ui tabular menu">
+        {props.categories.map(category => {
+          const active = category === "happy"
+
+          const classes = classNames("item", styles.tab, { active })
+
+          return (
+            <div className={classes}>
+              <img src={`/images/${category}.svg`} height={40} width={40} />
+            </div>
+          )
+        })}
       </div>
 
       <IdeaList category="happy" votes={[]} {...props} />
