@@ -16,8 +16,13 @@ const TabularBoardLayout = props => {
           const classes = classNames("item", styles.tab, { active })
 
           return (
-            <div className={classes}>
-              <img src={`/images/${category}.svg`} height={40} width={40} />
+            <div className={classes} key={category}>
+              <img
+                alt={category}
+                src={`/images/${category}.svg`}
+                height={40}
+                width={40}
+              />
             </div>
           )
         })}
