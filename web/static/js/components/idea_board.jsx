@@ -2,6 +2,7 @@ import React from "react"
 import MediaQuery from "react-responsive"
 import includes from "lodash/includes"
 
+import IdeaList from "./idea_list"
 import CategoryColumn from "./category_column"
 
 import * as AppPropTypes from "../prop_types"
@@ -34,9 +35,10 @@ const IdeaBoard = props => {
         </div>
       </div>
       <div className={`ui bottom attached active tab segment ${styles.categoryColumnsWrapper}`}>
-        <p>derp</p>
+        <IdeaList category="happy" votes={[]} {...props} />
       </div>
     </MediaQuery>,
+
     <MediaQuery minWidth={768}>
       <div className={`ui equal width padded grid ${styles.categoryColumnsWrapper}`}>
         { categoryColumns }
