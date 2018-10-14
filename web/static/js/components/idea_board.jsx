@@ -31,7 +31,9 @@ const IdeaBoard = props => {
           <img src="/images/confused.svg" height={40} width={40} />
         </div>
       </div>
-      <div className={`ui bottom attached active tab segment ${styles.categoryColumnsWrapper}`}>
+      <div
+        style={{ display: "flex", flex: 1 }}
+      >
         <IdeaList category="happy" votes={[]} {...props} />
       </div>
     </MediaQuery>,
