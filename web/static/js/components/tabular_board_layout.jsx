@@ -1,5 +1,8 @@
 import React from "react"
 import classNames from "classnames"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { actions as actionCreators } from "../redux"
 
 import IdeaList from "./idea_list"
 
@@ -35,12 +38,22 @@ const TabularBoardLayout = props => {
   )
 }
 
+export const mapStateToProps = () => ({})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch),
+})
+
 TabularBoardLayout.propTypes = {
   currentUser: AppPropTypes.presence.isRequired,
   ideas: AppPropTypes.ideas.isRequired,
   retroChannel: AppPropTypes.retroChannel.isRequired,
   stage: AppPropTypes.stage.isRequired,
   categories: AppPropTypes.categories.isRequired,
+  actions: AppPropTypes.actions.isRequired,
 }
 
-export default TabularBoardLayout
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TabularBoardLayout)
