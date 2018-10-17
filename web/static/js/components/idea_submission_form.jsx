@@ -34,6 +34,7 @@ export class IdeaSubmissionForm extends Component {
       category: isActionItemsStage ? "action-item" : "happy",
       assigneeId: isActionItemsStage ? users[0].id : null,
       hasTypedChar: false,
+      isMobile: navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i),
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleBodyChange = this.handleBodyChange.bind(this)
@@ -75,7 +76,7 @@ export class IdeaSubmissionForm extends Component {
 
   render() {
     const { users, stage } = this.props
-    const { assigneeId, body, hasTypedChar, category } = this.state
+    const { assigneeId, body, hasTypedChar, category, isMobile } = this.state
     const disabled = !body.trim().length
     const assigneeOptions = users.map(({ id, name }) =>
       <option key={id} value={id}>{name}</option>
@@ -123,7 +124,7 @@ export class IdeaSubmissionForm extends Component {
                 type="text"
                 name="idea"
                 autoComplete="off"
-                autoFocus
+                autoFocus={!isMobile}
                 ref={input => { this.ideaInput = input }}
                 value={body}
                 onChange={this.handleBodyChange}
