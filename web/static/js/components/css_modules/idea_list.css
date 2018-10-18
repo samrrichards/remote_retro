@@ -14,7 +14,8 @@
      Note that this declaration does *not* limit the height due
      to the `flex-grow: 1` declaration above
   */
-  height: 1px;
+  /*height: 1px;*/
+  flex: 1;
 
   overflow-y: hidden;
   &:global(.overflowed) {
