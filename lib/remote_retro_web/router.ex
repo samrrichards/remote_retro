@@ -16,6 +16,7 @@ defmodule RemoteRetroWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :add_mock_user_to_session
   end
 
   scope "/", RemoteRetroWeb do
@@ -31,5 +32,10 @@ defmodule RemoteRetroWeb.Router do
     pipe_through [:browser, :authentication_required]
 
     resources "/", RetroController, only: [:index, :create, :show]
+  end
+
+  defp add_mock_user_to_session(conn, _options) do
+    user = RemoteRetro.Repo.get!(RemoteRetro.User, 1)
+    put_session(conn, :current_user, user)
   end
 end
