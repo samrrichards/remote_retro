@@ -8,6 +8,7 @@ import TabularBoardLayout from "./tabular_board_layout"
 import STAGES from "../configs/stages"
 
 const { ACTION_ITEMS, CLOSED } = STAGES
+const MIN_TABLET_WIDTH = 768
 
 const IdeaBoard = props => {
   const { stage, categories } = props
@@ -22,10 +23,10 @@ const IdeaBoard = props => {
 
   return (
     <React.Fragment>
-      <MediaQuery maxWidth={767}>
+      <MediaQuery maxWidth={MIN_TABLET_WIDTH - 1}>
         <TabularBoardLayout {...boardLayoutProps} />
       </MediaQuery>
-      <MediaQuery minWidth={768}>
+      <MediaQuery minWidth={MIN_TABLET_WIDTH}>
         <ColumnarBoardLayout {...boardLayoutProps} />
       </MediaQuery>
     </React.Fragment>
