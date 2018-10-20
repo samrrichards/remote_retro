@@ -5,7 +5,7 @@ import {
   actions,
 } from "../../web/static/js/redux/mobile"
 
-describe.only("mobile", () => {
+describe("mobile", () => {
   describe("reducer", () => {
     describe("when an action is nonexistent or unhandled", () => {
       describe("and there is no initial state", () => {
