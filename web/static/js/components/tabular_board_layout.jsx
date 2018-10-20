@@ -10,13 +10,13 @@ import * as AppPropTypes from "../prop_types"
 import styles from "./css_modules/tabular_board_layout.css"
 
 export const TabularBoardLayout = props => {
-  const { categories, actions } = props
+  const { categories, actions, selectedCategoryTab } = props
 
   return (
     <React.Fragment>
       <div className="ui tabular menu">
         {categories.map(category => {
-          const active = category === "happy"
+          const active = category === selectedCategoryTab
 
           const classes = classNames("item", category, styles.tab, { active })
 
@@ -38,13 +38,15 @@ export const TabularBoardLayout = props => {
       </div>
 
       <div className={styles.ideaListWrapper}>
-        <IdeaList category="happy" votes={[]} {...props} />
+        <IdeaList category={selectedCategoryTab} votes={[]} {...props} />
       </div>
     </React.Fragment>
   )
 }
 
-export const mapStateToProps = () => ({})
+export const mapStateToProps = ({ mobile }) => ({
+  selectedCategoryTab: mobile.selectedCategoryTab,
+})
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch),
@@ -56,6 +58,7 @@ TabularBoardLayout.propTypes = {
   retroChannel: AppPropTypes.retroChannel.isRequired,
   stage: AppPropTypes.stage.isRequired,
   categories: AppPropTypes.categories.isRequired,
+  selectedCategoryTab: AppPropTypes.category.isRequired,
   actions: AppPropTypes.actions.isRequired,
 }
 
