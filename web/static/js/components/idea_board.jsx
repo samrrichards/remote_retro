@@ -15,13 +15,18 @@ const IdeaBoard = props => {
   const renderableColumnCategories = [...categories]
   if (showActionItem) { renderableColumnCategories.push("action-item") }
 
+  const boardLayoutProps = {
+    ...props,
+    categories: renderableColumnCategories,
+  }
+
   return (
     <React.Fragment>
       <MediaQuery maxWidth={767}>
-        <TabularBoardLayout {...props} categories={renderableColumnCategories} />
+        <TabularBoardLayout {...boardLayoutProps} />
       </MediaQuery>
       <MediaQuery minWidth={768}>
-        <ColumnarBoardLayout {...props} categories={renderableColumnCategories} />
+        <ColumnarBoardLayout {...boardLayoutProps} />
       </MediaQuery>
     </React.Fragment>
   )

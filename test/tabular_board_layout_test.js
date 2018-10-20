@@ -15,6 +15,11 @@ describe("TabularBoardLayout component", () => {
     actions,
     categories: ["happy", "sad", "confused"],
     ideas: [],
+    votes: [],
+    selectedCategoryTab: "happy",
+    retroChannel: {},
+    stage: "idea-generation",
+    currentUser: {},
   }
 
   describe("when clicking the tab for a given category", () => {
