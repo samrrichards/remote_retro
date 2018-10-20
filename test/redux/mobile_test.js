@@ -9,10 +9,12 @@ describe.only("mobile", () => {
   describe("reducer", () => {
     describe("when an action is nonexistent or unhandled", () => {
       describe("and there is no initial state", () => {
-        it("returns an empty object", () => {
+        it("returns an object with default selected category of 'happy'", () => {
           const unhandledAction = { type: "IHAVENOIDEAWHATSHAPPENING" }
 
-          expect(reducer(undefined, unhandledAction)).to.eql({})
+          expect(reducer(undefined, unhandledAction)).to.eql({
+            selectedCategoryTab: "happy",
+          })
         })
       })
 
