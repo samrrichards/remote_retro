@@ -10,7 +10,7 @@ import * as AppPropTypes from "../prop_types"
 import styles from "./css_modules/tabular_board_layout.css"
 
 export const TabularBoardLayout = props => {
-  const { categories, actions, selectedCategoryTab } = props
+  const { categories, actions, selectedCategoryTab, votes } = props
 
   return (
     <React.Fragment>
@@ -38,13 +38,14 @@ export const TabularBoardLayout = props => {
       </div>
 
       <div className={styles.ideaListWrapper}>
-        <IdeaList category={selectedCategoryTab} votes={[]} {...props} />
+        <IdeaList category={selectedCategoryTab} votes={votes} {...props} />
       </div>
     </React.Fragment>
   )
 }
 
-export const mapStateToProps = ({ mobile, ideas }) => ({
+export const mapStateToProps = ({ mobile, ideas, votes }) => ({
+  votes,
   selectedCategoryTab: mobile.selectedCategoryTab,
   ideas: ideas.filter(idea => idea.category === mobile.selectedCategoryTab),
 })
@@ -61,6 +62,7 @@ TabularBoardLayout.propTypes = {
   categories: AppPropTypes.categories.isRequired,
   selectedCategoryTab: AppPropTypes.category.isRequired,
   actions: AppPropTypes.actions.isRequired,
+  votes: AppPropTypes.votes.isRequired,
 }
 
 export default connect(
