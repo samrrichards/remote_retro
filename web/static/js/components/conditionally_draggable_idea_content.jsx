@@ -1,4 +1,5 @@
 import React from "react"
+import MediaQuery from "react-responsive"
 
 import StageAwareIdeaControls from "./stage_aware_idea_controls"
 
@@ -21,23 +22,27 @@ const ConditionallyDraggableIdeaContent = props => {
   const isIdeaEditableInCurrentStage = stage === "idea-generation"
 
   return (
-    <div
-      className={styles.ideaWrapper}
-      draggable={canUserEditIdea && isIdeaEditableInCurrentStage}
-      onDragStart={handleDragStart(props)}
-    >
-      <StageAwareIdeaControls
-        idea={idea}
-        retroChannel={retroChannel}
-        currentUser={currentUser}
-        stage={stage}
-      />
-      <div className="text">
-        <span data-hj-masked>{ idea.body }</span>
-        {hasAssignee && <span className={styles.assignee}> ({assignee.name})</span>}
-        {isEdited && <span className={styles.editedIndicator}> (edited)</span>}
-      </div>
-    </div>
+    <MediaQuery minWidth={768}>
+      {isTabletOrAbove => (
+        <div
+          className={styles.ideaWrapper}
+          draggable={canUserEditIdea && isIdeaEditableInCurrentStage && isTabletOrAbove}
+          onDragStart={handleDragStart(props)}
+        >
+          <StageAwareIdeaControls
+            idea={idea}
+            retroChannel={retroChannel}
+            currentUser={currentUser}
+            stage={stage}
+          />
+          <div className="text">
+            <span data-hj-masked>{ idea.body }</span>
+            {hasAssignee && <span className={styles.assignee}> ({assignee.name})</span>}
+            {isEdited && <span className={styles.editedIndicator}> (edited)</span>}
+          </div>
+        </div>
+      )}
+    </MediaQuery>
   )
 }
 
