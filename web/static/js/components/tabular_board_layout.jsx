@@ -9,17 +9,23 @@ import IdeaList from "./idea_list"
 import * as AppPropTypes from "../prop_types"
 import styles from "./css_modules/tabular_board_layout.css"
 
-const TabularBoardLayout = props => {
+export const TabularBoardLayout = props => {
+  const { categories, actions } = props
+
   return (
     <React.Fragment>
       <div className="ui tabular menu">
-        {props.categories.map(category => {
+        {categories.map(category => {
           const active = category === "happy"
 
-          const classes = classNames("item", styles.tab, { active })
+          const classes = classNames("item", category, styles.tab, { active })
 
           return (
-            <div className={classes} key={category}>
+            <div
+              className={classes}
+              key={category}
+              onClick={() => { actions.categoryTabSelected(category) }}
+            >
               <img
                 alt={category}
                 src={`/images/${category}.svg`}
