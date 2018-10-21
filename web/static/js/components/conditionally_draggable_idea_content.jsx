@@ -4,6 +4,7 @@ import MediaQuery from "react-responsive"
 import StageAwareIdeaControls from "./stage_aware_idea_controls"
 
 import * as AppPropTypes from "../prop_types"
+import { MIN_TABLET_WIDTH } from "../configs/responsive"
 import styles from "./css_modules/conditionally_draggable_idea_content.css"
 
 const handleDragStart = props => event => {
@@ -22,7 +23,7 @@ const ConditionallyDraggableIdeaContent = props => {
   const isIdeaEditableInCurrentStage = stage === "idea-generation"
 
   return (
-    <MediaQuery minWidth={768}>
+    <MediaQuery minWidth={MIN_TABLET_WIDTH}>
       {isTabletOrAbove => (
         <div
           className={styles.ideaWrapper}

@@ -6,9 +6,9 @@ import * as AppPropTypes from "../prop_types"
 import ColumnarBoardLayout from "./columnar_board_layout"
 import TabularBoardLayout from "./tabular_board_layout"
 import STAGES from "../configs/stages"
+import { MIN_TABLET_WIDTH } from "../configs/responsive"
 
 const { ACTION_ITEMS, CLOSED } = STAGES
-const MIN_TABLET_WIDTH = 768
 
 const IdeaBoard = props => {
   const { stage, categories } = props
