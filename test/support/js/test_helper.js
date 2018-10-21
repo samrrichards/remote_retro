@@ -4,6 +4,7 @@ import sinonChai from "sinon-chai"
 
 import Enzyme from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
+import React from "react"
 import sinon from "sinon"
 import { Socket } from "phoenix"
 import PropTypes from "prop-types"
@@ -74,7 +75,6 @@ export const setupMockPhoenixChannel = () => {
   return mockPhoenixChannel
 }
 
-const React = require("React")
 const MediaQuery = require("react-responsive").default
 const MediaQueryProps = require("react-responsive").MediaQueryProps
 

@@ -18,7 +18,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     window.innerWidth = 1440
   })
 
-  it("renders the control icons before idea body proper floating/text-wrapping", () => {
+  it("renders the control icons before idea body text to ensure floating/text-wrapping", () => {
     const wrapper = mountWithConnectedSubcomponents(
       <ConditionallyDraggableIdeaContent {...defaultProps} />
     )
