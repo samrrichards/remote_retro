@@ -37,6 +37,9 @@ global.mountWithConnectedSubcomponents = (component, options) => {
       votes: [],
       usersById: {},
       presences: [],
+      mobile: {
+        selectedCategoryTab: "happy",
+      },
     }),
   }
 
