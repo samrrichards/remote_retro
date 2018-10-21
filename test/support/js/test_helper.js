@@ -24,30 +24,34 @@ global.requestAnimationFrame = callback => {
   setTimeout(callback, 0)
 }
 
+const store = {
+  subscribe: () => {},
+  dispatch: () => {},
+  getState: () => ({
+    retro: {
+      facilitator_id: 1,
+      stage: IDEA_GENERATION,
+    },
+    ideas: [],
+    votes: [],
+    usersById: {},
+    presences: [],
+    mobile: {
+      selectedCategoryTab: "happy",
+    },
+  }),
+}
+
+const defaultOptions = {
+  context: { store },
+  childContextTypes: { store: PropTypes.object.isRequired },
+}
+
+global.renderWithConnectedSubcomponents = (component, options) => {
+  return Enzyme.render(component, { ...defaultOptions, ...options })
+}
+
 global.mountWithConnectedSubcomponents = (component, options) => {
-  const store = {
-    subscribe: () => {},
-    dispatch: () => {},
-    getState: () => ({
-      retro: {
-        facilitator_id: 1,
-        stage: IDEA_GENERATION,
-      },
-      ideas: [],
-      votes: [],
-      usersById: {},
-      presences: [],
-      mobile: {
-        selectedCategoryTab: "happy",
-      },
-    }),
-  }
-
-  const defaultOptions = {
-    context: { store },
-    childContextTypes: { store: PropTypes.object.isRequired },
-  }
-
   return Enzyme.mount(component, { ...defaultOptions, ...options })
 }
 

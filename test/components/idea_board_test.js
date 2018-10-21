@@ -1,8 +1,7 @@
 import React from "react"
-import { shallow } from "enzyme"
 
 import IdeaBoard from "../../web/static/js/components/idea_board"
-import ColumnarBoardLayout from "../../web/static/js/components/columnar_board_layout"
+import TabularBoardLayout from "../../web/static/js/components/tabular_board_layout"
 import STAGES from "../../web/static/js/configs/stages"
 import { CATEGORIES } from "../../web/static/js/configs/retro_configs"
 
@@ -22,7 +21,9 @@ describe("IdeaBoard component", () => {
 
   describe("when the stage is 'idea-generation'", () => {
     before(() => {
-      ideaBoard = shallow(<IdeaBoard {...defaultProps} stage={IDEA_GENERATION} />)
+      ideaBoard = mountWithConnectedSubcomponents(
+        <IdeaBoard {...defaultProps} stage={IDEA_GENERATION} />
+      )
     })
 
     it("passes categories of happy, sad, and confused", () => {
@@ -32,7 +33,9 @@ describe("IdeaBoard component", () => {
 
   describe("when the stage is 'action-items'", () => {
     before(() => {
-      ideaBoard = shallow(<IdeaBoard {...defaultProps} stage={ACTION_ITEMS} />)
+      ideaBoard = mountWithConnectedSubcomponents(
+        <IdeaBoard {...defaultProps} stage={ACTION_ITEMS} />
+      )
     })
 
     it("passes an additional fourth category of action-items", () => {
@@ -42,7 +45,7 @@ describe("IdeaBoard component", () => {
 
   describe("when the stage is 'closed'", () => {
     before(() => {
-      ideaBoard = shallow(<IdeaBoard {...defaultProps} stage={CLOSED} />)
+      ideaBoard = mountWithConnectedSubcomponents(<IdeaBoard {...defaultProps} stage={CLOSED} />)
     })
 
     it("passes an additional fourth category of action-items", () => {
@@ -52,6 +55,6 @@ describe("IdeaBoard component", () => {
 })
 
 const categoriesPassedTo = ideaBoard => {
-  const columnarBoardLayout = ideaBoard.find(ColumnarBoardLayout)
-  return columnarBoardLayout.prop("categories")
+  const layout = ideaBoard.find(TabularBoardLayout)
+  return layout.prop("categories")
 }
