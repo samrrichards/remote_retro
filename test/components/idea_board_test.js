@@ -19,8 +19,12 @@ describe("IdeaBoard component", () => {
     categories: CATEGORIES,
   }
 
+  beforeEach(() => {
+    window.innerWidth = 300;
+  })
+
   describe("when the stage is 'idea-generation'", () => {
-    before(() => {
+    beforeEach(() => {
       ideaBoard = mountWithConnectedSubcomponents(
         <IdeaBoard {...defaultProps} stage={IDEA_GENERATION} />
       )
@@ -32,7 +36,7 @@ describe("IdeaBoard component", () => {
   })
 
   describe("when the stage is 'action-items'", () => {
-    before(() => {
+    beforeEach(() => {
       ideaBoard = mountWithConnectedSubcomponents(
         <IdeaBoard {...defaultProps} stage={ACTION_ITEMS} />
       )
@@ -44,7 +48,7 @@ describe("IdeaBoard component", () => {
   })
 
   describe("when the stage is 'closed'", () => {
-    before(() => {
+    beforeEach(() => {
       ideaBoard = mountWithConnectedSubcomponents(<IdeaBoard {...defaultProps} stage={CLOSED} />)
     })
 

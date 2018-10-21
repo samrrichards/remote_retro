@@ -15,8 +15,12 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     stage: IDEA_GENERATION,
   }
 
+  beforeEach(() => {
+    window.innerWidth = 1440
+  })
+
   it("renders StageAwareIdeaControls as its first child for proper floating/text-wrapping", () => {
-    const wrapper = shallow(
+    const wrapper = mountWithConnectedSubcomponents(
       <ConditionallyDraggableIdeaContent {...defaultProps} />
     )
 
@@ -29,7 +33,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
       updated_at: "2017-04-14T17:30:12",
     }
 
-    const wrapper = shallow(
+    const wrapper = mountWithConnectedSubcomponents(
       <ConditionallyDraggableIdeaContent
         {...defaultProps}
         idea={editedIdea}
@@ -47,7 +51,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
       updated_at: "2017-04-14T17:30:10",
     }
 
-    const wrapper = shallow(
+    const wrapper = mountWithConnectedSubcomponents(
       <ConditionallyDraggableIdeaContent
         {...defaultProps}
         idea={nonEditedIdea}
@@ -68,7 +72,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
       body: "Do the thing",
     }
 
-    const wrapper = shallow(
+    const wrapper = mountWithConnectedSubcomponents(
       <ConditionallyDraggableIdeaContent
         {...defaultProps}
         assignee={assignee}
@@ -90,7 +94,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     let wrapper
 
     before(() => {
-      wrapper = shallow(
+      wrapper = mountWithConnectedSubcomponents(
         <ConditionallyDraggableIdeaContent {...props} />
       )
     })
@@ -109,7 +113,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     let wrapper
 
     before(() => {
-      wrapper = shallow(
+      wrapper = mountWithConnectedSubcomponents(
         <ConditionallyDraggableIdeaContent {...props} />
       )
     })
@@ -129,7 +133,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     let wrapper
 
     before(() => {
-      wrapper = shallow(
+      wrapper = mountWithConnectedSubcomponents(
         <ConditionallyDraggableIdeaContent {...props} />
       )
     })
@@ -149,7 +153,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     let wrapper
 
     before(() => {
-      wrapper = shallow(
+      wrapper = mountWithConnectedSubcomponents(
         <ConditionallyDraggableIdeaContent {...props} />
       )
     })
@@ -168,7 +172,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     let wrapper
 
     before(() => {
-      wrapper = shallow(
+      wrapper = mountWithConnectedSubcomponents(
         <ConditionallyDraggableIdeaContent {...props} />
       )
     })
@@ -189,7 +193,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     const mockEvent = { preventDefault: spy(), dataTransfer: { setData: spy(), dropEffect: null } }
 
     before(() => {
-      const wrapper = shallow(
+      const wrapper = mountWithConnectedSubcomponents(
         <ConditionallyDraggableIdeaContent {...props} />
       )
 
