@@ -16,18 +16,14 @@ const IdeaBoard = props => {
   const renderableColumnCategories = [...categories]
   if (showActionItem) { renderableColumnCategories.push("action-item") }
 
-  const boardLayoutProps = {
-    ...props,
-    categories: renderableColumnCategories,
-  }
-
   return (
     <React.Fragment>
-      <MediaQuery maxWidth={MIN_TABLET_WIDTH - 1}>
-        <TabularBoardLayout {...boardLayoutProps} />
-      </MediaQuery>
       <MediaQuery minWidth={MIN_TABLET_WIDTH}>
-        <ColumnarBoardLayout {...boardLayoutProps} />
+        {isTabletOrAbove => {
+          const Layout = isTabletOrAbove ? ColumnarBoardLayout : TabularBoardLayout
+
+          return <Layout {...props} categories={renderableColumnCategories} />
+        }}
       </MediaQuery>
     </React.Fragment>
   )
