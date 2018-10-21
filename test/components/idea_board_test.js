@@ -1,7 +1,7 @@
 import React from "react"
 
 import IdeaBoard from "../../web/static/js/components/idea_board"
-import TabularBoardLayout from "../../web/static/js/components/tabular_board_layout"
+import ColumnarBoardLayout from "../../web/static/js/components/columnar_board_layout"
 import STAGES from "../../web/static/js/configs/stages"
 import { CATEGORIES } from "../../web/static/js/configs/retro_configs"
 
@@ -18,10 +18,6 @@ describe("IdeaBoard component", () => {
     stage: IDEA_GENERATION,
     categories: CATEGORIES,
   }
-
-  beforeEach(() => {
-    window.innerWidth = 300;
-  })
 
   describe("when the stage is 'idea-generation'", () => {
     beforeEach(() => {
@@ -59,6 +55,6 @@ describe("IdeaBoard component", () => {
 })
 
 const categoriesPassedTo = ideaBoard => {
-  const layout = ideaBoard.find(TabularBoardLayout)
+  const layout = ideaBoard.find(ColumnarBoardLayout)
   return layout.prop("categories")
 }

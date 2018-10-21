@@ -1,5 +1,4 @@
 import React from "react"
-import { shallow } from "enzyme"
 import { spy } from "sinon"
 
 import ConditionallyDraggableIdeaContent from "../../web/static/js/components/conditionally_draggable_idea_content"
@@ -9,7 +8,7 @@ const { IDEA_GENERATION } = STAGES
 
 describe("<ConditionallyDraggableIdeaContent />", () => {
   const defaultProps = {
-    idea: {},
+    idea: { body: "body text" },
     currentUser: {},
     retroChannel: {},
     stage: IDEA_GENERATION,
@@ -19,12 +18,12 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     window.innerWidth = 1440
   })
 
-  it("renders StageAwareIdeaControls as its first child for proper floating/text-wrapping", () => {
+  it("renders the control icons before idea body proper floating/text-wrapping", () => {
     const wrapper = mountWithConnectedSubcomponents(
       <ConditionallyDraggableIdeaContent {...defaultProps} />
     )
 
-    expect(wrapper.childAt(0).name()).to.match(/StageAwareIdeaControls/)
+    expect(wrapper.html()).to.match(/<i.*><\/i>.*body text/)
   })
 
   context("when the idea's updated_at value is more than one second greater than its inserted_at value", () => {
@@ -100,7 +99,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     })
 
     it("sets draggable=true", () => {
-      expect(wrapper.prop("draggable")).to.eql(true)
+      expect(wrapper.html()).to.match(/draggable="true"/)
     })
   })
 
@@ -119,7 +118,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     })
 
     it("sets draggable=false", () => {
-      expect(wrapper.prop("draggable")).to.eql(false)
+      expect(wrapper.html()).to.match(/draggable="false"/)
     })
   })
 
@@ -139,7 +138,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     })
 
     it("sets draggable=true", () => {
-      expect(wrapper.prop("draggable")).to.eql(true)
+      expect(wrapper.html()).to.match(/draggable="true"/)
     })
   })
 
@@ -159,7 +158,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     })
 
     it("sets draggable=false", () => {
-      expect(wrapper.prop("draggable")).to.eql(false)
+      expect(wrapper.html()).to.match(/draggable="false"/)
     })
   })
 
@@ -178,7 +177,7 @@ describe("<ConditionallyDraggableIdeaContent />", () => {
     })
 
     it("sets draggable=false", () => {
-      expect(wrapper.prop("draggable")).to.eql(false)
+      expect(wrapper.html()).to.match(/draggable="false"/)
     })
   })
 
